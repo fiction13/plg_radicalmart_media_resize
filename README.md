@@ -1,1 +1,1 @@
-# Radical Reviews
+# RadicalMart Media Resize
