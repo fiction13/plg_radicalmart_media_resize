@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ @package   plg_radicalmart_media_resize
+  ~ @version   __DEPLOY_VERSION__
+  ~ @author    Dmitriy Vasyukov - https://fictionlabs.ru
+  ~ @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
+  ~ @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+  ~ @link      https://fictionlabs.ru/
+  -->
+
+<form addfieldprefix="Joomla\Plugin\RadicalMartMedia\Resize\Field">
+    <fieldset name="resize">
+        <field name="resize_provider"
+               label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_PROVIDER"
+               type="provider"
+               layout="joomla.form.field.list-fancy-select"
+               default="">
+            <option value="">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_PROVIDER_CHOOSE</option>
+        </field>
+
+        <field name="resize_path"
+               label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_PATH"
+               type="text"
+               default="images/radicalmart_media_resize"/>
+
+        <field
+                name="resize_size"
+                type="resize"
+                label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE"
+                description="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_DESC"
+                multiple="true"
+                min="1"
+                layout="joomla.form.field.subform.repeatable"
+                groupByFieldset="false"
+        >
+            <form addfieldprefix="Joomla\Plugin\RadicalMartMedia\Resize\Field">
+                <field name="context"
+                       type="context"
+                       label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT"
+                       hiddenLabel="true"
+                       default=""
+                >
+                    <option>PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_CHOOSE</option>
+                    <option value="com_radicalmart.products.grid">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCTS_GRID</option>
+                    <option value="com_radicalmart.products.list">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCTS_LIST</option>
+                </field>
+                <field name="width"
+                       label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_WIDTH"
+                       type="number"
+                       hiddenLabel="true"
+                       filter="integer"
+                       hint="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_WIDTH"
+                />
+                <field name="height"
+                       label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_HEIGHT"
+                       type="number"
+                       hiddenLabel="true"
+                       filter="integer"
+                       hint="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_HEIGHT"
+                />
+                <field name="crop"
+                       type="list"
+                       label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CROP"
+                       hiddenLabel="true"
+                       layout="joomla.form.field.list-fancy-select"
+                       default="1"
+                >
+                    <option>PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CROP_CHOOSE</option>
+                    <option value="resize">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CROP_RESIZE</option>
+                    <option value="crop">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CROP_CROP</option>
+                </field>
+            </form>
+        </field>
+    </fieldset>
+</form>
