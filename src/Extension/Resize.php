@@ -93,38 +93,35 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	/**
 	 * Method to change forms.
 	 *
-	 * @param   Event  $event  The event.
+	 * @param   Form   $form  The form to be altered.
+	 * @param   mixed  $data  The associated data for the form.
 	 *
 	 * @throws  \Exception
 	 *
 	 * @since  __DEPLOY_VERSION__
 	 */
-	public function onRadicalMartPrepareConfigForm(Event $event)
+	public function onRadicalMartPrepareConfigForm(Form $form, $data)
 	{
-		$form = $event->getArgument(0);
-
 		Form::addFormPath(JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/forms');
 		$form->loadFile('config');
 	}
 
 	/**
-	 * Method to change forms.
+	 * Method to render images.
 	 *
-	 * @param   Event  $event  The event.
+	 * @param   string|null  $context  Context selector string.
+	 * @param   string|null  $html     Html rendered image.
+	 * @param   string|null  $src      The relative or absolute URL to use for the src attribute.
+	 * @param   array        $attribs  Attributes to be added to the `<img>` element
+	 * @param   array        $data     Advanced data for render image.
 	 *
 	 * @throws  \Exception
 	 *
 	 * @since  __DEPLOY_VERSION__
 	 */
-	public function onRadicalMartRenderImage(Event $event)
+	public function onRadicalMartRenderImage($context, &$html, &$src, $attribs, $data)
 	{
 		$componentParams = ComponentHelper::getParams('com_radicalmart');
-
-		$context  = $event->getArgument(0);
-		$html     = $event->getArgument(1);
-		$src      = $event->getArgument(2);
-		$attribs  = $event->getArgument(3);
-		$data     = $event->getArgument(4);
 		$provider = $componentParams->get('resize_provider');
 		$image    = null;
 
@@ -181,18 +178,11 @@ class Resize extends CMSPlugin implements SubscriberInterface
 				$providerClass->generateImage($data);
 			}
 
-			$image = HTMLHelper::image($thumbfile, $alt, $attribs);
+			$html = HTMLHelper::image($thumbfile, $alt, $attribs);
 		}
 		else
 		{
-			$image = $providerClass->generateImage($data);
+			$html = $providerClass->generateImage($data);
 		}
-
-		if ($image)
-		{
-			$event->setArgument(1, $image);
-		}
-
-		return true;
 	}
 }

@@ -11,7 +11,7 @@
 <extension version="3.9" type="plugin" group="radicalmart_media" method="upgrade">
 	<name>PLG_RADICALMART_MEDIA_RESIZE</name>
     <author>Dmitriy Vasyukov</author>
-    <creationDate>January 2023</creationDate>
+    <creationDate>February 2023</creationDate>
     <authorEmail>info@fictionlabs.ru</authorEmail>
     <authorUrl>https://fictionlabs.ru</authorUrl>
     <copyright>A copyright</copyright>

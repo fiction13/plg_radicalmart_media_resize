@@ -129,13 +129,14 @@ class ResizeField extends SubformField
 	 */
 	public function postProcess($value, $group = null, Registry $input = null)
 	{
+
 		if ($value)
 		{
 			foreach ($value as $key => $val)
 			{
 				$context = str_replace('.', '_', $val->context);
 
-				if ($val !== $context)
+				if ($key !== $context)
 				{
 					unset($value->$key);
 
