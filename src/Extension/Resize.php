@@ -13,6 +13,7 @@ namespace Joomla\Plugin\RadicalMartMedia\Resize\Extension;
 \defined('_JEXEC') or die;
 
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -121,6 +122,12 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 */
 	public function onRadicalMartRenderImage($context, &$html, &$src, $attribs, $data)
 	{
+		// Redirect from old Zoo items
+		if (!Factory::getApplication()->isClient('site'))
+		{
+			return false;
+		}
+
 		$componentParams = ComponentHelper::getParams('com_radicalmart');
 		$provider = $componentParams->get('resize_provider');
 		$image    = null;
