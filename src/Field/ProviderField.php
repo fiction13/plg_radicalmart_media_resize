@@ -1,7 +1,7 @@
 <?php
 /*
  * @package   plg_radicalmart_media_resize
- * @version   __DEPLOY_VERSION__
+ * @version   1.0.0
  * @author    Dmitriy Vasyukov - https://fictionlabs.ru
  * @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
  * @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -24,7 +24,7 @@ class ProviderField extends ListField
 	 *
 	 * @var  string
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	protected $type = 'provider';
 
@@ -35,7 +35,7 @@ class ProviderField extends ListField
 	 *
 	 * @throws  \Exception
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	protected function getOptions()
 	{
@@ -45,10 +45,24 @@ class ProviderField extends ListField
 
 		foreach ($files as $file)
 		{
-			$file          = str_replace('Provider', '', lcfirst(File::stripExt($file)));
+			$provider   = str_replace('Provider', '', lcfirst(File::stripExt($file)));
+			$class_name = '\\Joomla\\Plugin\\RadicalMartMedia\\Resize\\Provider\\Collection\\' . ucfirst($provider) . 'Provider';
+
+			if (!class_exists($class_name))
+			{
+				continue;
+			}
+
+			$providerClass = new $class_name();
+
+			if (!$providerClass->checkInclude())
+			{
+				continue;
+			}
+
 			$option        = new stdClass();
 			$option->value = $file;
-			$option->text  = ucfirst($file);
+			$option->text  = ucfirst($provider);
 			$options[]     = $option;
 		}
 

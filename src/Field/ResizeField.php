@@ -1,7 +1,7 @@
 <?php
 /*
  * @package   plg_radicalmart_media_resize
- * @version   __DEPLOY_VERSION__
+ * @version   1.0.0
  * @author    Dmitriy Vasyukov - https://fictionlabs.ru
  * @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
  * @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -24,7 +24,7 @@ class ResizeField extends SubformField
 	 *
 	 * @var  string
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	protected $type = 'resize';
 
@@ -39,7 +39,7 @@ class ResizeField extends SubformField
 	 *
 	 * @return  boolean  True on success.
 	 *
-	 * @since   __DEPLOY_VERSION__
+	 * @since   0.0.0
 	 */
 	public function setup(\SimpleXMLElement $element, $value, $group = null)
 	{
@@ -71,7 +71,7 @@ class ResizeField extends SubformField
 	 *
 	 * @return  Form[]  Array of Form instances for the rows.
 	 *
-	 * @since   __DEPLOY_VERSION__
+	 * @since   0.0.0
 	 */
 	protected function loadSubFormData(Form $subForm)
 	{
@@ -125,7 +125,7 @@ class ResizeField extends SubformField
 	 *
 	 * @return  mixed   The processed value.
 	 *
-	 * @since   __DEPLOY_VERSION__
+	 * @since   0.0.0
 	 */
 	public function postProcess($value, $group = null, Registry $input = null)
 	{

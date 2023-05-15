@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ @package   plg_radicalmart_media_resize
-  ~ @version   __DEPLOY_VERSION__
+  ~ @version   1.0.0
   ~ @author    Dmitriy Vasyukov - https://fictionlabs.ru
   ~ @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
   ~ @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -20,6 +20,7 @@
 
         <field name="resize_path"
                label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_PATH"
+               description="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_PATH_DESC"
                type="text"
                default="images/radicalmart_media_resize"/>
 
@@ -41,8 +42,15 @@
                        default=""
                 >
                     <option>PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_CHOOSE</option>
+                    <option value="com_radicalmart.categories">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_CATEGORIES</option>
                     <option value="com_radicalmart.products.grid">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCTS_GRID</option>
                     <option value="com_radicalmart.products.list">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCTS_LIST</option>
+                    <option value="com_radicalmart.product.gallery.preview">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCT_GALLERY_PREVIEW</option>
+                    <option value="com_radicalmart.product.gallery.slide">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCT_GALLERY_SLIDE</option>
+                    <option value="mod_radicalmart_categories.grid">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_MODULE_CATEGORIES_GRID</option>
+                    <option value="mod_radicalmart_categories.overlay">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_MODULE_CATEGORIES_OVERLAY</option>
+                    <option value="mod_radicalmart_category.grid">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_MODULE_CATEGORY_GRID</option>
+                    <option value="mod_radicalmart_category.list">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_MODULE_CATEGORY_LIST</option>
                 </field>
                 <field name="width"
                        label="PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_WIDTH"

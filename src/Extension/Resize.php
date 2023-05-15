@@ -1,7 +1,7 @@
 <?php
 /*
  * @package   plg_radicalmart_media_resize
- * @version   __DEPLOY_VERSION__
+ * @version   1.0.0
  * @author    Dmitriy Vasyukov - https://fictionlabs.ru
  * @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
  * @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -31,7 +31,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var    bool
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	protected $autoloadLanguage = true;
 
@@ -40,7 +40,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var  \Joomla\CMS\Application\CMSApplication
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	protected $app = null;
 
@@ -49,7 +49,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var  \Joomla\Database\DatabaseDriver
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	protected $db = null;
 
@@ -57,7 +57,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 * The cascadehelper
 	 *
 	 * @var    ResizeHelper
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	protected $_name = null;
 
@@ -69,7 +69,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *                                          Recognized key values include 'name', 'group', 'params', 'language'
 	 *                                          (this list is not meant to be comprehensive).
 	 *
-	 * @since   __DEPLOY_VERSION__
+	 * @since   0.0.0
 	 */
 	public function __construct(&$subject, $config = array())
 	{
@@ -81,7 +81,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return  array
 	 *
-	 * @since   __DEPLOY_VERSION__
+	 * @since   0.0.0
 	 */
 	public static function getSubscribedEvents(): array
 	{
@@ -99,7 +99,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws  \Exception
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	public function onRadicalMartPrepareConfigForm(Form $form, $data)
 	{
@@ -118,7 +118,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws  \Exception
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	public function onRadicalMartRenderImage($context, &$html, &$src, $attribs, $data)
 	{

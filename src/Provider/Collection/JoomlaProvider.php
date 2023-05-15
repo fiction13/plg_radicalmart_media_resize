@@ -1,7 +1,7 @@
 <?php
 /*
  * @package   plg_radicalmart_media_resize
- * @version   __DEPLOY_VERSION__
+ * @version   1.0.0
  * @author    Dmitriy Vasyukov - https://fictionlabs.ru
  * @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
  * @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -25,9 +25,21 @@ class JoomlaProvider implements InterfaceProvider
 	 *
 	 * @return bool
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 0.0.0
 	 */
 	public function checkCache()
+	{
+		return true;
+	}
+
+	/**
+	 * @param $data
+	 *
+	 * @return string|bool
+	 *
+	 * @since 0.0.0
+	 */
+	public function checkInclude()
 	{
 		return true;
 	}
@@ -37,7 +49,7 @@ class JoomlaProvider implements InterfaceProvider
 	 *
 	 * @return string|bool
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 0.0.0
 	 */
 	public function generateImage($data)
 	{

@@ -1,7 +1,7 @@
 <?php
 /*
  * @package   plg_radicalmart_media_resize
- * @version   __DEPLOY_VERSION__
+ * @version   1.0.0
  * @author    Dmitriy Vasyukov - https://fictionlabs.ru
  * @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
  * @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -20,7 +20,7 @@ use Joomla\CMS\Factory;
 class ResizeHelper
 {
 	/**
-	 * @since __DEPLOY_VERSION__
+	 * @since 0.0.0
 	 */
 	protected static $instance;
 
@@ -29,7 +29,7 @@ class ResizeHelper
 	 *
 	 * @var CMSApplicationInterface
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	public $app = null;
 
@@ -38,7 +38,7 @@ class ResizeHelper
 	 *
 	 * @var Registry
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	public $componentParams;
 
@@ -47,14 +47,14 @@ class ResizeHelper
 	 *
 	 * @var array
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  0.0.0
 	 */
 	public static $imageParams = null;
 
 	/**
 	 * @param   Registry  $params
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 0.0.0
 	 */
 	public function __construct()
 	{
@@ -66,7 +66,7 @@ class ResizeHelper
 	 *
 	 * @return mixed|ResizeHelper
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 0.0.0
 	 */
 	public static function getInstance()
 	{

@@ -1,7 +1,7 @@
 <?php
 /*
  * @package   plg_radicalmart_media_resize
- * @version   __DEPLOY_VERSION__
+ * @version   1.0.0
  * @author    Dmitriy Vasyukov - https://fictionlabs.ru
  * @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
  * @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -12,7 +12,7 @@ namespace Joomla\Plugin\RadicalMartMedia\Resize\Provider\Collection;
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Factory;
 use Joomla\Plugin\RadicalMartMedia\Resize\Provider\InterfaceProvider;
 
 class YoothemeProvider implements InterfaceProvider
@@ -22,7 +22,7 @@ class YoothemeProvider implements InterfaceProvider
 	 *
 	 * @return bool
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 0.0.0
 	 */
 	public function checkCache()
 	{
@@ -34,7 +34,33 @@ class YoothemeProvider implements InterfaceProvider
 	 *
 	 * @return string|bool
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 0.0.0
+	 */
+	public function checkInclude()
+	{
+		// Get the database object and a new query object.
+		$db    = Factory::getContainer()->get('DatabaseDriver');
+		$query = $db->getQuery(true);
+
+		// Build the query.
+		$query->select('*')
+			->from($db->quoteName('#__template_styles'))
+			->where($db->quoteName('client_id') . ' = 0')
+			->where($db->quoteName('home') . ' = 1')
+			->where($db->quoteName('template') . ' LIKE '. $db->quote('yootheme%'));
+
+		// Set the query and load the templates.
+		$db->setQuery($query);
+
+		return (bool) $db->loadResult();
+	}
+
+	/**
+	 * @param $data
+	 *
+	 * @return string|bool
+	 *
+	 * @since 0.0.0
 	 */
 	public function generateImage($data)
 	{
