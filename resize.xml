@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ @package   plg_radicalmart_media_resize
-  ~ @version   1.0.1
+  ~ @version   __DEPLOY_VERSION__
   ~ @author    Dmitriy Vasyukov - https://fictionlabs.ru
   ~ @copyright Copyright (c) 2023 Fictionlabs. All rights reserved.
   ~ @license   GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
@@ -16,7 +16,7 @@
     <authorUrl>https://fictionlabs.ru</authorUrl>
     <copyright>A copyright</copyright>
     <license>GNU General Public License version 2 or later;</license>
-    <version>1.0.1</version>
+    <version>1.0.2-dev</version>
     <description>PLG_RADICALMART_MEDIA_RESIZE_DESCRIPTION</description>
 	<namespace path="src">Joomla\Plugin\RadicalMartMedia\Resize</namespace>
 	<scriptfile>script.php</scriptfile>
