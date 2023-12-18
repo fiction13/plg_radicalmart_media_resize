@@ -48,6 +48,7 @@
                     <option value="com_radicalmart.products.table">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCTS_TABLE</option>
                     <option value="com_radicalmart.metas.variability.grid">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_METAS_GRID</option>
                     <option value="com_radicalmart.metas.variability.list">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_METAS_LIST</option>
+                    <option value="com_radicalmart.metas.variability.table">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_METAS_TABLE</option>
                     <option value="com_radicalmart.product.gallery.preview">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCT_GALLERY_PREVIEW</option>
                     <option value="com_radicalmart.product.gallery.slide">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_PRODUCT_GALLERY_SLIDE</option>
                     <option value="mod_radicalmart_categories.grid">PLG_RADICALMART_MEDIA_RESIZE_PARAMS_SIZE_CONTEXT_MODULE_CATEGORIES_GRID</option>
