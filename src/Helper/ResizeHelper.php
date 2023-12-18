@@ -20,7 +20,7 @@ use Joomla\CMS\Factory;
 class ResizeHelper
 {
 	/**
-	 * @since 0.0.0
+	 * @since 1.0.0
 	 */
 	protected static $instance;
 
@@ -29,7 +29,7 @@ class ResizeHelper
 	 *
 	 * @var CMSApplicationInterface
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	public $app = null;
 
@@ -38,7 +38,7 @@ class ResizeHelper
 	 *
 	 * @var Registry
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	public $componentParams;
 
@@ -47,14 +47,14 @@ class ResizeHelper
 	 *
 	 * @var array
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	public static $imageParams = null;
 
 	/**
 	 * @param   Registry  $params
 	 *
-	 * @since 0.0.0
+	 * @since 1.0.0
 	 */
 	public function __construct()
 	{
@@ -66,7 +66,7 @@ class ResizeHelper
 	 *
 	 * @return mixed|ResizeHelper
 	 *
-	 * @since 0.0.0
+	 * @since 1.0.0
 	 */
 	public static function getInstance()
 	{
@@ -107,7 +107,7 @@ class ResizeHelper
 			}
 
 			$sizes       = $this->componentParams->extract('resize_size');
-			$imageParams = $sizes->get($context . '_' . $extraParam, $sizes->get($context));
+			$imageParams = $sizes->get($context . '.' . $extraParam, $sizes->get($context));
 
 			self::$imageParams[$context] = new Registry($imageParams);
 		}

@@ -23,7 +23,7 @@ class ProviderHelper
 	 *
 	 * @return InterfaceProvider|void
 	 *
-	 * @since 0.0.0
+	 * @since 1.0.0
 	 */
 	public static function getProvider(string $provider)
 	{
@@ -36,6 +36,7 @@ class ProviderHelper
 
 		if (!class_exists($class_name))
 		{
+
 			return;
 		}
 

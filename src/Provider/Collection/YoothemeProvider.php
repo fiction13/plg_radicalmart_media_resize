@@ -22,7 +22,7 @@ class YoothemeProvider implements InterfaceProvider
 	 *
 	 * @return bool
 	 *
-	 * @since 0.0.0
+	 * @since 1.0.0
 	 */
 	public function checkCache()
 	{
@@ -34,7 +34,7 @@ class YoothemeProvider implements InterfaceProvider
 	 *
 	 * @return string|bool
 	 *
-	 * @since 0.0.0
+	 * @since 1.0.0
 	 */
 	public function checkInclude()
 	{
@@ -60,7 +60,7 @@ class YoothemeProvider implements InterfaceProvider
 	 *
 	 * @return string|bool
 	 *
-	 * @since 0.0.0
+	 * @since 1.0.0
 	 */
 	public function generateImage($data)
 	{

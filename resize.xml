@@ -11,7 +11,7 @@
 <extension version="3.9" type="plugin" group="radicalmart_media" method="upgrade">
 	<name>PLG_RADICALMART_MEDIA_RESIZE</name>
     <author>Dmitriy Vasyukov</author>
-    <creationDate>May 2023</creationDate>
+    <creationDate>August 2023</creationDate>
     <authorEmail>info@fictionlabs.ru</authorEmail>
     <authorUrl>https://fictionlabs.ru</authorUrl>
     <copyright>A copyright</copyright>
@@ -43,7 +43,7 @@
 
 	<!-- Update server -->
 	<updateservers>
-		<server type="extension" priority="1" name="RadicalMart Fields: Cascade">
+		<server type="extension" priority="1" name="RadicalMart Media: Resize">
 			https://sovmart.ru/update?element=plg_radicalmart_media_resize
 		</server>
 	</updateservers>

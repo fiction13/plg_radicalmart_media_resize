@@ -21,7 +21,7 @@ class ContextField extends ListField
 	 *
 	 * @var  string
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $type = 'context';
 
@@ -30,7 +30,7 @@ class ContextField extends ListField
 	 *
 	 * @var    string
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $layout = 'plugins.radicalmart_media.resize.field.context';
 
@@ -39,7 +39,7 @@ class ContextField extends ListField
 	 *
 	 * @return  array  The field option objects.
 	 *
-	 * @since   0.0.0
+	 * @since   1.0.0
 	 */
 	public function getOptions()
 	{

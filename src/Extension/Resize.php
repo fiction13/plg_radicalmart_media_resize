@@ -31,7 +31,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var    bool
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $autoloadLanguage = true;
 
@@ -40,7 +40,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var  \Joomla\CMS\Application\CMSApplication
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $app = null;
 
@@ -49,7 +49,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var  \Joomla\Database\DatabaseDriver
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $db = null;
 
@@ -57,7 +57,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 * The cascadehelper
 	 *
 	 * @var    ResizeHelper
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $_name = null;
 
@@ -69,7 +69,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *                                          Recognized key values include 'name', 'group', 'params', 'language'
 	 *                                          (this list is not meant to be comprehensive).
 	 *
-	 * @since   0.0.0
+	 * @since   1.0.0
 	 */
 	public function __construct(&$subject, $config = array())
 	{
@@ -81,7 +81,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return  array
 	 *
-	 * @since   0.0.0
+	 * @since   1.0.0
 	 */
 	public static function getSubscribedEvents(): array
 	{
@@ -99,7 +99,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws  \Exception
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	public function onRadicalMartPrepareConfigForm(Form $form, $data)
 	{
@@ -118,7 +118,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws  \Exception
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	public function onRadicalMartRenderImage($context, &$html, &$src, $attribs, $data)
 	{
@@ -159,7 +159,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 		}
 
 		$data = array(
-			'src'    => $src,
+			'src'    => $data['src'] ?? $src,
 			'alt'    => $alt,
 			'attrs'  => $attribs,
 			'path'   => $componentParams->get('resize_path', 'images/radicalmart_media_resize'),
@@ -175,11 +175,12 @@ class Resize extends CMSPlugin implements SubscriberInterface
 			$md5           = md5($src . $width . $height . $imageParams->get('crop'));
 			$subfolder     = substr($md5, 0, 2);
 			$cacheFolder   = ltrim($componentParams->get('resize_path', 'images/radicalmart_media_resize'), '/');
-			$thumbfile     = $cacheFolder . '/' . $subfolder . '/' . $fileInfo['filename'] . '_' . $width . 'x' . $height . '.' . $fileInfo['extension'];
+			$thumbfile     = $cacheFolder . '/' . $subfolder . '/' . strtolower($fileInfo['filename']) . '_' . $width . 'x' . $height . '.' . $fileInfo['extension'];
 			$thumbfilePath = Path::clean(JPATH_ROOT . '/' . $thumbfile);
 
 			if (!is_file($thumbfilePath) || filemtime($filePath) > filemtime($thumbfilePath))
 			{
+
 				$data['thumb'] = $thumbfilePath;
 
 				$providerClass->generateImage($data);

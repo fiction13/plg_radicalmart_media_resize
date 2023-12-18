@@ -30,13 +30,13 @@ $image = $this->el('image', [
 ]);
 
 // Image
-$image->attr([
-	array_merge($attrs,
+$image->attr(
+	array_merge(
 		[
 			'uk-img' => true
-		]
+		], $attrs
 	)
-]);
+);
 
 // Display image
 echo $image->render();

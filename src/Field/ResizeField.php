@@ -24,7 +24,7 @@ class ResizeField extends SubformField
 	 *
 	 * @var  string
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $type = 'resize';
 
@@ -39,7 +39,7 @@ class ResizeField extends SubformField
 	 *
 	 * @return  boolean  True on success.
 	 *
-	 * @since   0.0.0
+	 * @since   1.0.0
 	 */
 	public function setup(\SimpleXMLElement $element, $value, $group = null)
 	{
@@ -71,7 +71,7 @@ class ResizeField extends SubformField
 	 *
 	 * @return  Form[]  Array of Form instances for the rows.
 	 *
-	 * @since   0.0.0
+	 * @since   1.0.0
 	 */
 	protected function loadSubFormData(Form $subForm)
 	{
@@ -125,7 +125,7 @@ class ResizeField extends SubformField
 	 *
 	 * @return  mixed   The processed value.
 	 *
-	 * @since   0.0.0
+	 * @since   1.0.0
 	 */
 	public function postProcess($value, $group = null, Registry $input = null)
 	{

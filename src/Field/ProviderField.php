@@ -24,7 +24,7 @@ class ProviderField extends ListField
 	 *
 	 * @var  string
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected $type = 'provider';
 
@@ -35,7 +35,7 @@ class ProviderField extends ListField
 	 *
 	 * @throws  \Exception
 	 *
-	 * @since  0.0.0
+	 * @since  1.0.0
 	 */
 	protected function getOptions()
 	{
@@ -61,7 +61,7 @@ class ProviderField extends ListField
 			}
 
 			$option        = new stdClass();
-			$option->value = $file;
+			$option->value = $provider;
 			$option->text  = ucfirst($provider);
 			$options[]     = $option;
 		}
