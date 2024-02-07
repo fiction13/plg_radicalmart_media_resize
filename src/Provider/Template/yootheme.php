@@ -18,6 +18,7 @@ defined('_JEXEC') or die;
  * @var  int    $width  Image width.
  * @var  int    $height Image height.
  * @var  array  $attrs  Image attributes.
+ * @var string  $crop   Image crop
  */
 
 $image = $this->el('image', [
@@ -27,13 +28,16 @@ $image = $this->el('image', [
 	'width'     => $width,
 	'height'    => $height,
 	'thumbnail' => true,
+	'crop'      => $crop
 ]);
 
 // Image
 $image->attr(
 	array_merge(
 		[
-			'uk-img' => true
+			'uk-img'      => true,
+			'data-width'  => $width,
+			'data-height' => $height
 		], $attrs
 	)
 );
