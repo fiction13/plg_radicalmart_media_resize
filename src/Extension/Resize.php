@@ -160,7 +160,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 
 		$data = array(
 			'src'    => $data['src'] ?? $src,
-			'alt'    => $alt,
+			'alt'    => $alt ?? '',
 			'attrs'  => $attribs,
 			'path'   => $componentParams->get('resize_path', 'images/radicalmart_media_resize'),
 			'params' => $imageParams
