@@ -123,7 +123,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	public function onRadicalMartRenderImage($context, &$html, &$src, $attribs, $data)
 	{
 		// Redirect from old Zoo items
-		if (!Factory::getApplication()->isClient('site'))
+		if (!Factory::getApplication()->isClient('site') || !$src)
 		{
 			return false;
 		}
