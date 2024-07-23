@@ -88,30 +88,36 @@ class ResizeHelper
 	 */
 	public function getImageParams($context)
 	{
-		$context = str_replace('.', '_', $context);
+		$context      = str_replace('.', '_', $context);
+		$extraParam   = 0;
+		$extraContext = $context;
 
-		if (!isset(self::$imageParams[$context]))
+		// Get category in category view
+		if ($this->app->input->getCmd('view') === 'category')
 		{
-			$extraParam = 0;
-
-			// Get category in category view
-			if ($this->app->input->getCmd('view') === 'category')
-			{
-				$extraParam = $this->app->input->getInt('id');
-			}
-
-			// Get category in product view
-			if ($this->app->input->getCmd('view') === 'product')
-			{
-				$extraParam = $this->app->input->getInt('category');
-			}
-
-			$sizes       = $this->componentParams->extract('resize_size');
-			$imageParams = $sizes->get($context . '.' . $extraParam, $sizes->get($context));
-
-			self::$imageParams[$context] = new Registry($imageParams);
+			$extraParam = $this->app->input->getInt('id');
 		}
 
-		return self::$imageParams[$context];
+		// Get category in product view
+		if ($this->app->input->getCmd('view') === 'product')
+		{
+			$extraParam = $this->app->input->getInt('category');
+		}
+
+		if ($extraParam)
+		{
+			$extraContext = $context . '_' . $extraParam;
+		}
+
+		// Cache params
+		if (!isset(self::$imageParams[$extraContext]))
+		{
+			$sizes       = $this->componentParams->extract('resize_size');
+			$imageParams = $sizes->get($extraContext, $sizes->get($context));
+
+			self::$imageParams[$extraContext] = new Registry($imageParams);
+		}
+
+		return self::$imageParams[$extraContext];
 	}
 }
