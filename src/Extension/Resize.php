@@ -14,12 +14,11 @@ namespace Joomla\Plugin\RadicalMartMedia\Resize\Extension;
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\Path;
+use Joomla\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Event\DispatcherInterface;
-use Joomla\Event\Event;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Plugin\RadicalMartMedia\Resize\Helper\ProviderHelper;
 use Joomla\Plugin\RadicalMartMedia\Resize\Helper\ResizeHelper;
@@ -122,15 +121,15 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 */
 	public function onRadicalMartRenderImage($context, &$html, &$src, $attribs, $data)
 	{
-		// Redirect from old Zoo items
-		if (!Factory::getApplication()->isClient('site') || !$src)
+		// Check src
+		if (!Factory::getApplication()->isClient('site') || empty($src))
 		{
 			return false;
 		}
 
 		$componentParams = ComponentHelper::getParams('com_radicalmart');
-		$provider = $componentParams->get('resize_provider');
-		$image    = null;
+		$provider        = $componentParams->get('resize_provider');
+		$image           = null;
 
 		if (!$provider)
 		{
@@ -151,6 +150,8 @@ class Resize extends CMSPlugin implements SubscriberInterface
 			return false;
 		}
 
+		$alt = '';
+
 		// Image alt
 		if (isset($attribs['alt']))
 		{
@@ -160,7 +161,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 
 		$data = array(
 			'src'    => $data['src'] ?? $src,
-			'alt'    => $alt ?? '',
+			'alt'    => $alt ?: '',
 			'attrs'  => $attribs,
 			'path'   => $componentParams->get('resize_path', 'images/radicalmart_media_resize'),
 			'params' => $imageParams
@@ -180,7 +181,6 @@ class Resize extends CMSPlugin implements SubscriberInterface
 
 			if (!is_file($thumbfilePath) || filemtime($filePath) > filemtime($thumbfilePath))
 			{
-
 				$data['thumb'] = $thumbfilePath;
 
 				$providerClass->generateImage($data);

@@ -12,11 +12,10 @@ namespace Joomla\Plugin\RadicalMartMedia\Resize\Provider\Collection;
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Filesystem\File;
+use Joomla\Filesystem\File;
 use Joomla\CMS\Image\Image;
 use Joomla\Filesystem\Path;
 use Joomla\Plugin\RadicalMartMedia\Resize\Provider\InterfaceProvider;
-use Joomla\Registry\Registry;
 
 class JoomlaProvider implements InterfaceProvider
 {

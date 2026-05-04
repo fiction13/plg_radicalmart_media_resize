@@ -12,7 +12,7 @@ namespace Joomla\Plugin\RadicalMartMedia\Resize\Field;
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Joomla\CMS\Form\Field\ListField;
 use Joomla\Filesystem\File;
 use stdClass;
