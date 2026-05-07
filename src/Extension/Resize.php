@@ -14,6 +14,7 @@ namespace Joomla\Plugin\RadicalMartMedia\Resize\Extension;
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\Component\RadicalMart\Administrator\Helper\ParamsHelper;
 use Joomla\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -42,15 +43,6 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	 * @since  1.0.0
 	 */
 	protected $app = null;
-
-	/**
-	 * Loads the database object.
-	 *
-	 * @var  \Joomla\Database\DatabaseDriver
-	 *
-	 * @since  1.0.0
-	 */
-	protected $db = null;
 
 	/**
 	 * The cascadehelper
@@ -86,9 +78,37 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	{
 		return [
 			'onRadicalMartPrepareConfigForm' => 'onRadicalMartPrepareConfigForm',
-			'onRadicalMartRenderImage'       => 'onRadicalMartRenderImage'
+			'onRadicalMartRenderImage'       => 'onRadicalMartRenderImage',
+            'onRadicalMartPrepareConfigGroups'  => 'onRadicalMartPrepareConfigGroups',
 		];
 	}
+
+    /**
+     * Trigger `onRadicalMartPrepareConfigGroups` event.
+     *
+     * @param   array  $groups  Modified groups data.
+     *
+     * @return void
+     */
+    public function onRadicalMartPrepareConfigGroups(array &$groups)
+    {
+        Factory::getApplication()->getLanguage()->load('plg_radicalmart_media_resize', JPATH_ADMINISTRATOR);
+
+        $groups['resize'] = [
+            'title'    => 'PLG_RADICALMART_MEDIA_RESIZE_CONFIG_TITLE',
+            'key'      => 'resize',
+            'sections' => [
+                'settings' => [
+                    'title'     => 'PLG_RADICALMART_MEDIA_RESIZE_CONFIG_SETTINGS',
+                    'key'       => 'resize_settings',
+                    'type'      => 'fieldsets',
+                    'fieldsets' => [
+                        'resize'
+                    ],
+                ]
+            ]
+        ];
+    }
 
 	/**
 	 * Method to change forms.
@@ -127,7 +147,7 @@ class Resize extends CMSPlugin implements SubscriberInterface
 			return false;
 		}
 
-		$componentParams = ComponentHelper::getParams('com_radicalmart');
+		$componentParams = ParamsHelper::getComponentParams();
 		$provider        = $componentParams->get('resize_provider');
 		$image           = null;
 
