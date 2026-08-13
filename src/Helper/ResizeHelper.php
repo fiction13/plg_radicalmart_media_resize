@@ -91,17 +91,18 @@ class ResizeHelper
 		$context      = str_replace('.', '_', $context);
 		$extraParam   = 0;
 		$extraContext = $context;
+		$input        = $this->app->getInput();
 
 		// Get category in category view
-		if ($this->app->input->getCmd('view') === 'category')
+		if ($input->getCmd('view') === 'category')
 		{
-			$extraParam = $this->app->input->getInt('id');
+			$extraParam = $input->getInt('id');
 		}
 
 		// Get category in product view
-		if ($this->app->input->getCmd('view') === 'product')
+		if ($input->getCmd('view') === 'product')
 		{
-			$extraParam = $this->app->input->getInt('category');
+			$extraParam = $input->getInt('category');
 		}
 
 		if ($extraParam)

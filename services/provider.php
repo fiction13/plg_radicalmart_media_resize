@@ -31,10 +31,9 @@ return new class implements ServiceProviderInterface {
 	{
 		$container->set(PluginInterface::class,
 			function (Container $container) {
-				$plugin  = PluginHelper::getPlugin('radicalmart_media', 'resize');
-				$subject = $container->get(DispatcherInterface::class);
+				$plugin = new Resize((array) PluginHelper::getPlugin('radicalmart_media', 'resize'));
 
-				$plugin = new Resize($subject, (array) $plugin);
+				$plugin->setDispatcher($container->get(DispatcherInterface::class));
 				$plugin->setApplication(Factory::getApplication());
 
 				return $plugin;

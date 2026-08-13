@@ -19,7 +19,6 @@ use Joomla\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
-use Joomla\Event\DispatcherInterface;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Plugin\RadicalMartMedia\Resize\Helper\ProviderHelper;
 use Joomla\Plugin\RadicalMartMedia\Resize\Helper\ResizeHelper;
@@ -36,36 +35,12 @@ class Resize extends CMSPlugin implements SubscriberInterface
 	protected $autoloadLanguage = true;
 
 	/**
-	 * Loads the application object.
-	 *
-	 * @var  \Joomla\CMS\Application\CMSApplication
-	 *
-	 * @since  1.0.0
-	 */
-	protected $app = null;
-
-	/**
 	 * The cascadehelper
 	 *
 	 * @var    ResizeHelper
 	 * @since  1.0.0
 	 */
 	protected $_name = null;
-
-	/**
-	 * Constructor
-	 *
-	 * @param   DispatcherInterface  &$subject  The object to observe
-	 * @param   array                 $config   An optional associative array of configuration settings.
-	 *                                          Recognized key values include 'name', 'group', 'params', 'language'
-	 *                                          (this list is not meant to be comprehensive).
-	 *
-	 * @since   1.0.0
-	 */
-	public function __construct(&$subject, $config = array())
-	{
-		parent::__construct($subject, $config);
-	}
 
 	/**
 	 * Returns an array of events this subscriber will listen to.
@@ -189,11 +164,19 @@ class Resize extends CMSPlugin implements SubscriberInterface
 
 		if ($providerClass->checkCache())
 		{
-			$filePath      = Path::clean(JPATH_ROOT . '/' . ltrim($src, '/'), '/');
+			$source        = HTMLHelper::cleanImageURL((string) $data['src'])->url;
+			$filePath      = Path::clean(JPATH_ROOT . '/' . ltrim($source, '/'), '/');
+
+			if (!is_file($filePath))
+			{
+				return;
+			}
+
+			$data['src']   = $source;
 			$width         = $imageParams->get('width');
 			$height        = $imageParams->get('height');
 			$fileInfo      = pathinfo($filePath);
-			$md5           = md5($src . $width . $height . $imageParams->get('crop'));
+			$md5           = md5($source . $width . $height . $imageParams->get('crop'));
 			$subfolder     = substr($md5, 0, 2);
 			$cacheFolder   = ltrim($componentParams->get('resize_path', 'images/radicalmart_media_resize'), '/');
 			$thumbfile     = $cacheFolder . '/' . $subfolder . '/' . strtolower($fileInfo['filename']) . '_' . $width . 'x' . $height . '.' . $fileInfo['extension'];
@@ -210,7 +193,12 @@ class Resize extends CMSPlugin implements SubscriberInterface
 		}
 		else
 		{
-			$html = $providerClass->generateImage($data);
+			$generatedHtml = $providerClass->generateImage($data);
+
+			if (is_string($generatedHtml) && $generatedHtml !== '')
+			{
+				$html = $generatedHtml;
+			}
 		}
 	}
 }

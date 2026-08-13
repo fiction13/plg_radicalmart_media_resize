@@ -15,6 +15,7 @@ namespace Joomla\Plugin\RadicalMartMedia\Resize\Field;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Field\SubformField;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Form\FormFactoryInterface;
 use Joomla\Registry\Registry;
 
 class ResizeField extends SubformField
@@ -86,15 +87,17 @@ class ResizeField extends SubformField
 		}
 
 		// Multiple rows possible: Construct array and bind values to their respective forms.
-		$forms = array();
-		$value = array_values($value);
+		$forms       = array();
+		$value       = array_values($value);
+		$formFactory = Factory::getContainer()->get(FormFactoryInterface::class);
 
 		// Show as many rows as we have values, but at least min and at most max.
 		$c = max($this->min, min(\count($value), $this->max));
 
 		for ($i = 0; $i < $c; $i++)
 		{
-			$control = $this->name . '[' . $this->fieldname . $i . ']';
+			$control   = $this->name . '[' . $this->fieldname . $i . ']';
+			$value[$i] = (array) $value[$i];
 
 			if (!empty($value[$i]) && isset($value[$i]['context']) && $value[$i]['context'])
 			{
@@ -102,7 +105,23 @@ class ResizeField extends SubformField
 				$control = $this->name . '[' . $name . ']';
 			}
 
-			$itemForm = Form::getInstance($subForm->getName() . $i, $this->formsource, array('control' => $control));
+			$itemForm = $formFactory->createForm($subForm->getName() . $i, array('control' => $control));
+
+			// Load the data.
+			if (str_starts_with($this->formsource, '<'))
+			{
+				if (!$itemForm->load($this->formsource))
+				{
+					throw new \RuntimeException(\sprintf('%s() could not load form', __METHOD__));
+				}
+			}
+			else
+			{
+				if (!$itemForm->loadFile($this->formsource))
+				{
+					throw new \RuntimeException(\sprintf('%s() could not load file', __METHOD__));
+				}
+			}
 
 			if (!empty($value[$i]))
 			{
